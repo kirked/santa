@@ -10,7 +10,7 @@
     (let [n (count participants)]
       (loop [m      {}
              givers (zipmap (range n) participants)
-             takers givers]
+             takers (zipmap (range n) (reverse participants))]
       (if (empty? givers)
         m
         (let [[g _] (grab givers)
@@ -24,7 +24,7 @@
 (defn format-text
   "Format the text message."
   [{:keys [name address city state zip]}]
-  (format "You are secret Santa for %s. Send to %s, %s, %s %s"
+  (format "You are Secret Santa for %s! Mail to %s, %s, %s %s. This message was sent from a rented phone number."
           name address city state zip))
 
 (defn text-to
